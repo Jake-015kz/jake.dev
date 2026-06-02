@@ -1,0 +1,208 @@
+/* components/ui/Header.module.scss */
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999999 !important;
+  background: rgba(10, 10, 10, 0.95);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+
+  @media (max-width: 1023px) {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 1.25rem 4rem;
+
+  @media (max-width: 1023px) {
+    padding: 1rem 2rem;
+  }
+
+  @media (max-width: 767px) {
+    padding: 1rem 1.5rem;
+  }
+}
+
+/* ── Логотип ── */
+.logo {
+  font-size: 0.875rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #ffffff;
+  text-decoration: none;
+  white-space: nowrap;
+
+  .dot {
+    color: #00ffff;
+  }
+}
+
+/* ── Десктопная навигация ── */
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+
+  @media (max-width: 1023px) {
+    display: none;
+  }
+}
+
+.navLink {
+  position: relative;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.45);
+  text-decoration: none;
+  transition: color 0.25s ease;
+
+  &:hover {
+    color: #ffffff;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: #00ffff;
+    transition: width 0.25s ease;
+  }
+
+  &:hover::after {
+    width: 100%;
+  }
+}
+
+/* ── Статус ── */
+.status {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  @media (max-width: 1023px) {
+    display: none;
+  }
+}
+
+.statusDot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #00ff66;
+  box-shadow: 0 0 8px rgba(0, 255, 102, 0.6);
+  flex-shrink: 0;
+}
+
+.statusText {
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.625rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.4);
+  white-space: nowrap;
+}
+
+/* ── Бургер-кнопка ── */
+.burger {
+  display: none;
+  width: 44px;
+  height: 44px;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+
+  @media (max-width: 1023px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+  }
+}
+
+.burgerLine {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: #ffffff;
+  transition: transform 0.3s ease;
+  transform-origin: center;
+}
+
+/* Модификатор открытого меню — линии в крестик */
+.isOpen {
+  .burgerLine:first-child {
+    transform: translateY(3.5px) rotate(45deg);
+  }
+
+  .burgerLine:last-child {
+    transform: translateY(-3.5px) rotate(-45deg);
+  }
+}
+
+/* ── Мобильное меню ── */
+.mobileMenu {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: rgba(10, 10, 10, 0.98);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @media (min-width: 1024px) {
+    display: none !important;
+  }
+}
+
+.mobileNav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+  padding: 2rem;
+}
+
+.mobileLink {
+  position: relative;
+  font-size: 1.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.mobileStatus {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.mobileStatusText {
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.625rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.4);
+  white-space: nowrap;
+}

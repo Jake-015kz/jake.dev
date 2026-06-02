@@ -1,0 +1,113 @@
+/* components/ui/Footer.module.scss */
+
+.footer {
+  width: 100%;
+  padding: 2rem 4rem 2.5rem;
+  position: relative;
+  z-index: 2;
+  background: transparent;
+  border-top: 1px solid rgba(255, 255, 255, 0.03);
+
+  @media (max-width: 1023px) {
+    padding: 1.5rem 2rem 2rem;
+  }
+
+  @media (max-width: 767px) {
+    padding: 1.25rem 1.5rem 1.75rem;
+  }
+}
+
+// ── AI Terminal Status ──
+.aiStatus {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.aiDot {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: #00ff66;
+  box-shadow: 0 0 6px rgba(0, 255, 102, 0.5);
+  flex-shrink: 0;
+  animation: aiPulse 2s ease-in-out infinite;
+}
+
+@keyframes aiPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.aiText {
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.625rem;
+  color: rgba(0, 255, 255, 0.35);
+  letter-spacing: 0.06em;
+  transition: opacity 0.2s ease;
+}
+
+.aiTextFading {
+  opacity: 0.3;
+}
+
+// ── Основной контент ──
+.inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+
+  @media (max-width: 767px) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+}
+
+.meta {
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.625rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #555;
+  white-space: nowrap;
+
+  @media (max-width: 1023px) {
+    font-size: 0.5625rem;
+  }
+}
+
+.time {
+  color: rgba(0, 255, 255, 0.4);
+  font-variant-numeric: tabular-nums;
+}
+
+.backToTop {
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.625rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #555;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  white-space: nowrap;
+  transition: color 0.25s ease, letter-spacing 0.25s ease;
+
+  &:hover {
+    color: #00ffff;
+    letter-spacing: 0.1em;
+  }
+
+  @media (max-width: 1023px) {
+    font-size: 0.5625rem;
+  }
+}

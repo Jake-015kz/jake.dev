@@ -1,0 +1,53 @@
+/* Button.module.scss */
+@use "sass:map";
+
+$sizes: (
+  sm: 0.75rem,
+  md: 1rem,
+  lg: 1.25rem,
+);
+
+$variants: (
+  primary: (
+    bg: #2563eb,
+    color: #fff,
+    border: none,
+  ),
+  secondary: (
+    bg: #e5e7eb,
+    color: #111827,
+    border: none,
+  ),
+);
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: inherit;
+  font-weight: 600;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.2s ease-in-out;
+  &:disabled, &.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+@each $size, $value in $sizes {
+  .size-#{$size} {
+    padding: calc(#{$value} / 2) #{$value};
+    font-size: $value;
+  }
+}
+
+@each $variant, $props in $variants {
+  .variant-#{$variant} {
+    background-color: map.get($props, bg);
+    color: map.get($props, color);
+    border: map.get($props, border);
+  }
+}
+

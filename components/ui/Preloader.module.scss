@@ -1,0 +1,60 @@
+/* components/ui/Preloader.module.scss */
+
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  pointer-events: none !important; /* Пропускает тач и клики сквозь себя */
+}
+
+.preloaderDone {
+  display: none !important; // Полностью убираем из DOM-потока — ноль блокировки
+}
+
+.top,
+.bottom {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: #0a0a0a;
+  will-change: transform;
+}
+
+.top {
+  top: 0;
+}
+
+.bottom {
+  bottom: 0;
+}
+
+// ── Счётчик ──
+.counterWrap {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: baseline;
+  gap: 0.15rem;
+  z-index: 1;
+}
+
+.counter {
+  font-family: var(--font-geist-mono), monospace;
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 400;
+  color: #ffffff;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.percent {
+  font-family: var(--font-geist-mono), monospace;
+  font-size: clamp(1rem, 2vw, 1.75rem);
+  font-weight: 300;
+  color: rgba(0, 255, 255, 0.5);
+  letter-spacing: 0.04em;
+}

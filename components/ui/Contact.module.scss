@@ -1,0 +1,116 @@
+/* components/ui/Contact.module.scss */
+
+.contact {
+  width: 100%;
+  padding: 8rem 4rem 6rem;
+  position: relative;
+  z-index: 2;
+  background: transparent; /* Глобальный фон просвечивает */
+
+  @media (max-width: 1023px) {
+    padding: 6rem 2rem 4rem;
+  }
+
+  @media (max-width: 767px) {
+    padding: 5rem 1.5rem 3rem;
+  }
+}
+
+.inner {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+// ── Заголовок секции ──
+.sectionHeader {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: 4rem;
+
+  @media (max-width: 767px) {
+    margin-bottom: 3rem;
+  }
+}
+
+.sectionNumber {
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.75rem;
+  color: #00ffff;
+  letter-spacing: 0.06em;
+}
+
+.sectionTitle {
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin: 0;
+}
+
+// ── Список ссылок ──
+.links {
+  display: flex;
+  flex-direction: column;
+}
+
+.linkItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  text-decoration: none;
+  color: #ffffff;
+  transition: padding-left 0.3s ease;
+  cursor: pointer;
+
+  &:first-child {
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  &:hover {
+    padding-left: 1rem;
+
+    .arrow {
+      transform: translate(3px, -3px);
+      color: #00ffff;
+    }
+
+    .linkLabel {
+      color: #00ffff;
+    }
+  }
+}
+
+.linkLeft {
+  display: flex;
+  align-items: baseline;
+  gap: 1.5rem;
+
+  @media (max-width: 767px) {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+}
+
+.linkLabel {
+  font-size: clamp(1.125rem, 2vw, 1.5rem);
+  font-weight: 600;
+  color: #ffffff;
+  transition: color 0.3s ease;
+}
+
+.linkHandle {
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.3);
+  letter-spacing: 0.04em;
+}
+
+.arrow {
+  color: rgba(255, 255, 255, 0.25);
+  transition: transform 0.3s ease, color 0.3s ease;
+  flex-shrink: 0;
+}

@@ -1,0 +1,171 @@
+/* components/ui/Hero.module.scss — Строгий швейцарский минимализм */
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  padding: 10rem 4rem 4rem;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+  background: transparent;
+  z-index: 2;
+
+  @media (max-width: 1023px) {
+    padding: 8rem 2rem 3rem;
+  }
+
+  @media (max-width: 767px) {
+    padding: 7rem 1.5rem 2.5rem;
+  }
+}
+
+// ── Основная двухколоночная сетка ──
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  flex-grow: 1;
+  align-content: center;
+  z-index: 2;
+
+  @media (min-width: 1024px) {
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 4rem;
+    align-items: center;
+  }
+}
+
+// ── Левая колонка: заголовок — всегда видим ──
+.leftCol {
+  display: flex;
+  align-items: center;
+}
+
+.title {
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin: 0;
+
+  .accent {
+    background: linear-gradient(135deg, #00ffff 0%, #0099ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+// ── Правая колонка ──
+// На мобилке — всегда видима (без анимации)
+// На десктопе — появляется через CSS-transition
+.rightCol {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2.5rem;
+
+  @media (min-width: 1024px) {
+    padding-left: 2rem;
+    border-left: 1px solid rgba(255, 255, 255, 0.06);
+    /* На десктопе — начальное скрытое состояние + transition */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+}
+
+.rightColVisible {
+  @media (min-width: 1024px) {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.description {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #999;
+  font-weight: 400;
+  max-width: 28rem;
+  margin: 0;
+
+  strong {
+    color: #ccc;
+    font-weight: 600;
+  }
+}
+
+// ── Кнопки: горизонтальный ряд ──
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+// ── Стили CTA-кнопок ──
+.ctaButton {
+  border-radius: 0 !important;
+  font-family: var(--font-geist-mono), monospace !important;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 600 !important;
+  font-size: 0.75rem !important;
+  padding: 1rem 2rem !important;
+  border: 1px solid rgba(0, 255, 255, 0.15) !important;
+  transition: border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease !important;
+  background: rgba(17, 17, 17, 0.85) !important;
+  color: rgba(255, 255, 255, 0.8) !important;
+  box-shadow:
+    0 0 20px rgba(0, 255, 255, 0.04),
+    0 0 40px rgba(0, 255, 255, 0.02);
+
+  &:hover {
+    border-color: rgba(0, 255, 255, 0.35) !important;
+    background: rgba(13, 13, 13, 0.9) !important;
+    color: #00ffff !important;
+    box-shadow:
+      0 0 25px rgba(0, 255, 255, 0.08),
+      0 0 50px rgba(0, 255, 255, 0.04);
+  }
+}
+
+// ── Нижний колонтитул ──
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem 3rem;
+  margin-top: 4rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  z-index: 2;
+
+  @media (max-width: 767px) {
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 3rem;
+  }
+}
+
+.metaItem {
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.625rem;
+  color: rgba(255, 255, 255, 0.35);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: #00ffff;
+  }
+
+  strong {
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 400;
+  }
+}
