@@ -24,35 +24,41 @@ export const Header: React.FC = () => {
   }, [menuOpen]);
 
   return (
-    <header className={styles.header}>
-      <div className={styles.inner}>
-        <a href="#hero" className={styles.logo}>
-          JAKE<span className={styles.dot}>.</span>DEV
-        </a>
+    <>
+      <header className={styles.header}>
+        <div className={styles.inner}>
+          <a href="#hero" className={styles.logo}>
+            JAKE<span className={styles.dot}>.</span>DEV
+          </a>
 
-        <nav className={styles.nav}>
-          {navLinks.map((link) => (
-            <a key={link.href} href={link.href} className={styles.navLink}>
-              {link.label}
-            </a>
-          ))}
-        </nav>
+          <nav className={styles.nav}>
+            {navLinks.map((link) => (
+              <a key={link.href} href={link.href} className={styles.navLink}>
+                {link.label}
+              </a>
+            ))}
+          </nav>
 
-        <div className={styles.status}>
-          <span className={styles.statusDot} />
-          <span className={styles.statusText}>ДОСТУПЕН ДЛЯ ПРОЕКТОВ</span>
+          <div className={styles.status}>
+            <span className={styles.statusDot} />
+            <span className={styles.statusText}>ДОСТУПЕН ДЛЯ ПРОЕКТОВ</span>
+          </div>
+
+          <button
+            className={`${styles.burger} ${menuOpen ? styles.isOpen : ""}`}
+            onClick={() => setMenuOpen(!menuOpen)}
+            onTouchEnd={(e) => {
+              e.preventDefault();
+              setMenuOpen(!menuOpen);
+            }}
+            aria-label="Menu"
+            type="button"
+          >
+            <span className={styles.burgerLine} />
+            <span className={styles.burgerLine} />
+          </button>
         </div>
-
-        <button
-          className={`${styles.burger} ${menuOpen ? styles.isOpen : ""}`}
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Menu"
-          type="button"
-        >
-          <span className={styles.burgerLine} />
-          <span className={styles.burgerLine} />
-        </button>
-      </div>
+      </header>
 
       {menuOpen && (
         <div className={styles.mobileMenu}>
@@ -76,7 +82,7 @@ export const Header: React.FC = () => {
           </nav>
         </div>
       )}
-    </header>
+    </>
   );
 };
 
