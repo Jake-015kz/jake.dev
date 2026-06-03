@@ -15,10 +15,12 @@ interface ContactLink {
 }
 
 const contactLinks: ContactLink[] = [
-  { label: "Telegram", href: "https://t.me/jake_dev", handle: "@jake_dev" },
-  { label: "Kwork", href: "https://kwork.ru/user/jake", handle: "kwork.ru/user/jake" },
-  { label: "Email", href: "mailto:hello@jake.dev", handle: "hello@jake.dev" },
-  { label: "GitHub", href: "https://github.com/jake-dev", handle: "github.com/jake-dev" },
+  { label: "Telegram", href: "https://t.me/Jake_sko", handle: "@Jake_sko" },
+  { label: "WhatsApp", href: "https://wa.me/77058576466", handle: "+7 (705) 857-64-66" },
+  { label: "Kwork", href: "https://kwork.ru/user/87058576466a", handle: "kwork.ru/user/87058576466a" },
+  { label: "GitHub", href: "https://github.com/Jake-015kz", handle: "github.com/Jake-015kz" },
+  { label: "Email", href: "mailto:zhegan89@gmail.com", handle: "zhegan89@gmail.com" },
+  { label: "Телефон", href: "tel:+77058576466", handle: "+7 (705) 857-64-66" },
 ];
 
 export const Contact: React.FC = () => {
@@ -35,6 +37,23 @@ export const Contact: React.FC = () => {
   }, []);
 
   useEffect(() => {
+    // На мобильных — сразу показываем элементы
+    const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+
+    if (isMobile) {
+      linkRefs.current.forEach((link) => {
+        if (link) {
+          link.style.opacity = "1";
+          link.style.transform = "none";
+        }
+      });
+      if (titleRef.current) {
+        titleRef.current.style.opacity = "1";
+        titleRef.current.style.transform = "none";
+      }
+      return;
+    }
+
     const ctx = gsap.context(() => {
       if (titleRef.current) {
         gsap.fromTo(

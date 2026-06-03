@@ -5,6 +5,14 @@ import Button from "./Button";
 import styles from "./Hero.module.scss";
 import { gsap } from "gsap";
 
+const scrollToSection = (href: string) => {
+  const id = href.replace("#", "");
+  const element = document.getElementById(id);
+  if (element) {
+    element.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+};
+
 /**
  * Hero — строгий швейцарский минимализм.
  * Заголовок статичен и монолитен.
@@ -39,6 +47,15 @@ export const Hero: React.FC = () => {
     if (typeof window === "undefined" || window.innerWidth < 768) return;
     window.dispatchEvent(new CustomEvent("cursor-leave"));
   }, []);
+
+  // Обработчик клика для кнопок с плавным скроллом
+  const handleButtonClick = useCallback(
+    (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+      e.preventDefault();
+      scrollToSection(href);
+    },
+    []
+  );
 
   // Магнитный эффект для кнопок — только на десктопе
   useEffect(() => {
@@ -120,6 +137,7 @@ export const Hero: React.FC = () => {
               variant="primary"
               className={styles.ctaButton}
               ref={(el) => { buttonRefs.current[0] = el; }}
+              onClick={(e: React.MouseEvent<HTMLAnchorElement>) => handleButtonClick(e, "#projects")}
             >
               Смотреть работы
             </Button>
@@ -129,6 +147,7 @@ export const Hero: React.FC = () => {
               variant="secondary"
               className={styles.ctaButton}
               ref={(el) => { buttonRefs.current[1] = el; }}
+              onClick={(e: React.MouseEvent<HTMLAnchorElement>) => handleButtonClick(e, "#contact")}
             >
               Обсудить проект
             </Button>

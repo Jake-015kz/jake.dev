@@ -21,6 +21,11 @@ const AI_STATUSES = [
   "[INFERENCE: FAST]",
 ];
 
+const scrollToTop = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  e.preventDefault();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+};
+
 export const Footer: React.FC = () => {
   const [time, setTime] = useState<string>("");
   const [statusIndex, setStatusIndex] = useState(0);
@@ -62,15 +67,33 @@ export const Footer: React.FC = () => {
 
       <div className={styles.inner}>
         <span className={styles.meta}>
-          © {new Date().getFullYear()} JAKE.DEV / ALL RIGHTS RESERVED
+          © {new Date().getFullYear()} Evgeny (Jeka) / Jake — ALL RIGHTS RESERVED
         </span>
 
         <span className={styles.meta}>
-          ЛОКАЦИЯ: ПЕТРОПАВЛОВСК, КАЗАХСТАН (UTC+5) —{" "}
+          ЛОКАЦИЯ: АЛМАТЫ, КАЗАХСТАН (UTC+5) —{" "}
           <span className={styles.time}>{time}</span>
         </span>
 
-        <a href="#hero" className={styles.backToTop}>
+        <div className={styles.socialLinks}>
+          <a href="https://t.me/Jake_sko" target="_blank" rel="noopener noreferrer">
+            Telegram
+          </a>
+          <a href="https://wa.me/77058576466" target="_blank" rel="noopener noreferrer">
+            WhatsApp
+          </a>
+          <a href="https://kwork.ru/user/87058576466a" target="_blank" rel="noopener noreferrer">
+            Kwork
+          </a>
+          <a href="https://github.com/Jake-015kz" target="_blank" rel="noopener noreferrer">
+            GitHub
+          </a>
+          <a href="mailto:zhegan89@gmail.com">
+            Email
+          </a>
+        </div>
+
+        <a href="#hero" className={styles.backToTop} onClick={scrollToTop}>
           BACK TO TOP ↑
         </a>
       </div>

@@ -51,3 +51,10 @@ $variants: (
   }
 }
 
+// Мобильные кнопки на всю ширину
+@media (max-width: 767px) {
+  .button {
+    display: flex;
+    width: 100%;
+  }
+}
