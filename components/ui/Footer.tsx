@@ -103,7 +103,7 @@ export const Footer: React.FC = () => {
         </span>
 
         <span className={styles.meta}>
-          ЛОКАЦИЯ: АЛМАТЫ, КАЗАХСТАН (UTC+5) —{" "}
+          ЛОКАЦИЯ: ПЕТРОПАВЛОВСК, КАЗАХСТАН (UTC+6) —{" "}
           <span className={styles.time}>{time}</span>
         </span>
 

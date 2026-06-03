@@ -157,14 +157,11 @@ export const Hero: React.FC = () => {
 
       <footer className={styles.footer}>
         <span className={styles.metaItem}>
-          Локация: <strong>Алматы (UTC+5)</strong>
+          Локация: <strong>Петропавловск, Казахстан (UTC+6)</strong>
         </span>
         <span className={styles.metaItem}>
           Стек:{" "}
           <strong>Next.js · TypeScript · Node.js · Python · AI Agents</strong>
-        </span>
-        <span className={styles.metaItem}>
-          © {new Date().getFullYear()} — portfolio
         </span>
       </footer>
     </section>
