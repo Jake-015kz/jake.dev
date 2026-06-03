@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import styles from "./Header.module.scss";
 
 const navLinks = [
@@ -8,6 +8,14 @@ const navLinks = [
   { label: "Проекты", href: "#projects" },
   { label: "Контакты", href: "#contact" },
 ];
+
+const scrollToSection = (href: string) => {
+  const id = href.replace("#", "");
+  const element = document.getElementById(id);
+  if (element) {
+    element.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+};
 
 export const Header: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -23,17 +31,44 @@ export const Header: React.FC = () => {
     };
   }, [menuOpen]);
 
+  const handleNavClick = useCallback(
+    (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+      e.preventDefault();
+      scrollToSection(href);
+    },
+    []
+  );
+
+  const handleMobileNavClick = useCallback(
+    (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+      e.preventDefault();
+      setMenuOpen(false);
+      // Небольшая задержка, чтобы меню закрылось перед скроллом
+      setTimeout(() => scrollToSection(href), 100);
+    },
+    []
+  );
+
   return (
     <>
       <header className={styles.header}>
         <div className={styles.inner}>
-          <a href="#hero" className={styles.logo}>
+          <a
+            href="#hero"
+            className={styles.logo}
+            onClick={(e) => handleNavClick(e, "#hero")}
+          >
             JAKE<span className={styles.dot}>.</span>DEV
           </a>
 
           <nav className={styles.nav}>
             {navLinks.map((link) => (
-              <a key={link.href} href={link.href} className={styles.navLink}>
+              <a
+                key={link.href}
+                href={link.href}
+                className={styles.navLink}
+                onClick={(e) => handleNavClick(e, link.href)}
+              >
                 {link.label}
               </a>
             ))}
@@ -68,7 +103,7 @@ export const Header: React.FC = () => {
                 key={link.href}
                 href={link.href}
                 className={styles.mobileLink}
-                onClick={() => setMenuOpen(false)}
+                onClick={(e) => handleMobileNavClick(e, link.href)}
               >
                 {link.label}
               </a>

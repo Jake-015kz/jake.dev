@@ -107,6 +107,25 @@ export const Projects: React.FC = () => {
   }, [handleCursorLeave]);
 
   useEffect(() => {
+    // На мобильных — сразу показываем карточки без GSAP ScrollTrigger
+    const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+
+    if (isMobile) {
+      // Мобильные: принудительно показываем все карточки
+      cardRefs.current.forEach((card) => {
+        if (card) {
+          card.style.opacity = "1";
+          card.style.transform = "none";
+        }
+      });
+      if (titleRef.current) {
+        titleRef.current.style.opacity = "1";
+        titleRef.current.style.transform = "none";
+      }
+      return;
+    }
+
+    // Десктоп: используем GSAP ScrollTrigger
     const ctx = gsap.context(() => {
       // Заголовок секции
       if (titleRef.current) {
@@ -131,7 +150,6 @@ export const Projects: React.FC = () => {
       cardRefs.current.forEach((card, i) => {
         if (!card) return;
 
-        // Параллакс: карточки появляются с разной скоростью
         gsap.fromTo(
           card,
           { opacity: 0, y: 50 },
